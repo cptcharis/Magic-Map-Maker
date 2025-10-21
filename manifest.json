@@ -1,0 +1,21 @@
+{
+  "short_name": "Magic Map",
+  "name": "Magic Map Maker",
+  "description": "An application that takes a student's lesson notes and uses AI to generate a summarized, visually-drawn mind map resume of the key concepts.",
+  "icons": [
+    {
+      "src": "/icon-192.svg",
+      "type": "image/svg+xml",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/icon-512.svg",
+      "type": "image/svg+xml",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#3b82f6",
+  "background_color": "#f0f9ff"
+}

@@ -1,0 +1,7 @@
+{
+  "name": "Lesson Visualizer AI",
+  "description": "An application that takes a student's lesson notes and uses AI to generate a summarized, visually-drawn mind map resume of the key concepts.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
