@@ -8,7 +8,6 @@ import CharacterWeb from './components/CharacterWeb';
 import Loader from './components/Loader';
 import Welcome from './components/Welcome';
 import ErrorDisplay from './components/ErrorDisplay';
-import InstallHelpModal from './components/InstallHelpModal';
 import { generateVisualization } from './services/geminiService';
 import type { VisualizationData, MapType, TreeNode } from './types';
 
@@ -35,27 +34,17 @@ const App: React.FC = () => {
   const [lessonText, setLessonText] = useState('');
   const [imageFile, setImageFile] = useState<File | null>(null);
 
-  // State for PWA installation
-  const [installPrompt, setInstallPrompt] = useState<Event | null>(null);
-  const [showInstallHelp, setShowInstallHelp] = useState(false);
-
   const treeViewRef = useRef<TreeViewHandle>(null);
   const visualizationContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const handleBeforeInstallPrompt = (e: Event) => {
-      e.preventDefault();
-      setInstallPrompt(e);
-    };
     const handleOnline = () => setIsOffline(false);
     const handleOffline = () => setIsOffline(true);
 
-    window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
     window.addEventListener('online', handleOnline);
     window.addEventListener('offline', handleOffline);
 
     return () => {
-      window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
       window.removeEventListener('online', handleOnline);
       window.removeEventListener('offline', handleOffline);
     };
@@ -144,19 +133,6 @@ const App: React.FC = () => {
     }
   }, []);
   
-  const handleInstall = async () => {
-    if (installPrompt) {
-      (installPrompt as any).prompt();
-      const { outcome } = await (installPrompt as any).userChoice;
-      if (outcome === 'accepted') {
-        console.log('User accepted the install prompt');
-      }
-      setInstallPrompt(null);
-    } else {
-      setShowInstallHelp(true);
-    }
-  };
-
   const handleExportPNG = () => {
     if (currentMapType === 'TreeView') {
       treeViewRef.current?.exportPNG();
@@ -197,14 +173,12 @@ const App: React.FC = () => {
 
   return (
     <div className="min-h-screen text-text-main font-sans flex flex-col transition-colors duration-300">
-      {showInstallHelp && <InstallHelpModal onClose={() => setShowInstallHelp(false)} />}
       <Header 
         currentTheme={currentTheme} 
         onThemeChange={setCurrentTheme}
         onStartOver={handleStartOver}
         onExportPNG={handleExportPNG}
         onSaveMap={handleSaveMap}
-        onInstall={handleInstall}
         showSaveConfirmation={showSaveConfirmation}
         visualizationData={visualizationData}
         isLoading={isLoading}

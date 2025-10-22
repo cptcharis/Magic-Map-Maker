@@ -3,7 +3,6 @@ import ThemeSwitcher from './ThemeSwitcher';
 import SaveIcon from './icons/SaveIcon';
 import CameraIcon from './icons/CameraIcon';
 import RefreshIcon from './icons/RefreshIcon';
-import InstallIcon from './icons/InstallIcon';
 import OfflineIndicator from './OfflineIndicator';
 import { VisualizationData } from '../types';
 
@@ -13,7 +12,6 @@ interface HeaderProps {
   onStartOver: () => void;
   onExportPNG: () => void;
   onSaveMap: () => void;
-  onInstall: () => void;
   showSaveConfirmation: boolean;
   visualizationData: VisualizationData | null;
   isLoading: boolean;
@@ -27,7 +25,6 @@ const Header: React.FC<HeaderProps> = ({
   onStartOver,
   onExportPNG,
   onSaveMap,
-  onInstall,
   showSaveConfirmation,
   visualizationData,
   isLoading,
@@ -85,15 +82,6 @@ const Header: React.FC<HeaderProps> = ({
           </>
         )}
         
-        <button
-          onClick={onInstall}
-          className="p-3 bg-accent text-accent-content rounded-full shadow-lg hover:bg-accent/80 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-surface focus:ring-accent transition-transform duration-200 ease-in-out hover:scale-110 active:scale-100"
-          aria-label="Install App"
-          title="Install App"
-        >
-          <InstallIcon className="w-6 h-6" />
-        </button>
-
         <ThemeSwitcher currentTheme={currentTheme} onThemeChange={onThemeChange} />
       </div>
     </header>
