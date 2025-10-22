@@ -95,25 +95,20 @@ const InstallHelpModal: React.FC<InstallHelpModalProps> = ({ onClose }) => {
                     </div>
                     
                     {isLocal && (
-                        <div className="mt-4 p-4 rounded-lg bg-yellow-50 border border-yellow-300 text-yellow-900" role="status">
+                        <div className="mt-4 p-4 rounded-lg bg-yellow-50 border border-yellow-300 text-yellow-900" role="alert">
                             <h4 className="font-bold flex items-center">
                                 <InfoIcon className="h-5 w-5 mr-2 shrink-0" />
-                                Troubleshooting Your Local Link
+                                This is a Local Development Link
                             </h4>
                             <p className="text-sm mt-2 mb-3">
-                                This QR code points to a private address. For it to work, try these steps:
+                                Your QR code points to a private address (like <code>localhost</code>). Your phone can't access this unless it's on the <strong>exact same Wi-Fi network</strong> as your computer.
                             </p>
-                            <ol className="list-decimal list-inside space-y-2 text-sm">
-                                <li>
-                                    <strong>Connect to the same Wi-Fi:</strong> Your phone and computer must be on the exact same network.
-                                </li>
-                                <li>
-                                    <strong>Check Firewalls:</strong> Your computer's firewall might be blocking access. Try temporarily disabling it.
-                                </li>
-                                <li>
-                                    <strong>Get a Public Link:</strong> The most reliable solution is to generate a public URL. Look for a <strong>"Deploy"</strong> or <strong>"Publish"</strong> button in your development tool.
-                                </li>
-                            </ol>
+                            <p className="text-sm mt-1 mb-3">
+                                If it's still not working, your computer's firewall might be blocking the connection.
+                            </p>
+                            <p className="text-sm font-semibold">
+                                The best solution is to get a public link. Look for a <strong>"Deploy"</strong> or <strong>"Publish"</strong> button in your development tool to create a shareable link that works anywhere!
+                            </p>
                         </div>
                     )}
                      {!isLocal && (
